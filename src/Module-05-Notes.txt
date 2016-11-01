@@ -1,0 +1,12 @@
+1. Introduction to the Swing GUI Framework
+2. Sample Swing Application
+3. Further Swing Resources
+
+1. Introduction to the Swing GUI Framework
+
+	-DrawControlApp.java
+		- simplifies main method
+		- highlights the use of inheritance
+		- this layout of code puts all the  initialization and control code within the implementation of a draw frame class (ControlFrame that extends JFrame)
+		
+	-DrawControlPanel.java
