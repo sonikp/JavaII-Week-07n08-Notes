@@ -10,3 +10,7 @@
 		- this layout of code puts all the  initialization and control code within the implementation of a draw frame class (ControlFrame that extends JFrame)
 		
 	-DrawControlPanel.java
+	
+	- ControlFrame
+		- Java shows it is an event driven language by creating an object on the fly to support the ActionListener which is created only when a user selects the "aboutItem" option.
+		
