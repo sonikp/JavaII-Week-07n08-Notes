@@ -14,3 +14,35 @@
 	- ControlFrame
 		- Java shows it is an event driven language by creating an object on the fly to support the ActionListener which is created only when a user selects the "aboutItem" option.
 		
+
+		
+		/*
+		
+		Tutorials:
+		https://www.google.com/webhp?sourceid=chrome-instant&ion=1&espv=2&ie=UTF-8#q=beginning%20java%20swing%20tutorial
+		https://docs.oracle.com/javase/tutorial/uiswing/examples/components/
+		
+		http://beginnersbook.com/2015/07/java-swing-tutorial/		// completed
+		
+		http://zetcode.com/tutorials/javaswingtutorial/				
+		http://zetcode.com/tutorials/javaswingtutorial/menusandtoolbars/ //ShortCutsEx.java
+		
+		
+		
+		
+		The Java Tutorials: Creating a GUI with JFC.Swing ( The Swing Tutorial )
+		http://java.sun.com/docs/books/tutorial/uiswing/
+		
+		The Swing Tutorial
+		http://www.javabeginner.com/java-swing/java-swing-tutorial/
+		
+		SwingWiki: 
+		http://www.swingwiki.org
+		
+		The SwingSet2 Demo
+		<JDK Install Direcroty/demo/jfc/SwingSet2
+		
+		command line:
+		jar xf SwingSet2.jar
+		
+		*/

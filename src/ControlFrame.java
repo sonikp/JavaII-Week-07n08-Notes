@@ -166,6 +166,44 @@ public class ControlFrame extends JFrame
       }
     );
      
+    JMenuItem showPanelItem = new JMenuItem( "ShowPicture" );
+    showPanelItem.setMnemonic( 'S' );
+    fileMenu.add( showPanelItem );
+    showPanelItem.addActionListener(
+      new ActionListener()
+      {
+        public void actionPerformed( ActionEvent event )
+        {
+          bar.add( colorMenu );         
+          mainPanel.remove( calcPanel );
+          drawPanel.setBackground( Color.WHITE );
+          mainPanel.add( drawPanel, BorderLayout.CENTER );
+          mainPanel.add( widthJSlider, BorderLayout.SOUTH );          
+          validate();
+          repaint();
+        }
+      }
+    );
+    
+    JMenuItem soundPanelItem = new JMenuItem( "SoundPanel" );
+    soundPanelItem.setMnemonic( 'P' );
+    fileMenu.add( soundPanelItem );
+    soundPanelItem.addActionListener(
+      new ActionListener()
+      {
+        public void actionPerformed( ActionEvent event )
+        {
+          bar.add( colorMenu );         
+          mainPanel.remove( calcPanel );
+          drawPanel.setBackground( Color.WHITE );
+          mainPanel.add( drawPanel, BorderLayout.CENTER );
+          mainPanel.add( widthJSlider, BorderLayout.SOUTH );          
+          validate();
+          repaint();
+        }
+      }
+    );
+    
     JMenuItem exitItem = new JMenuItem( "Exit" );
     exitItem.setMnemonic( 'x' );
     fileMenu.add( exitItem );
