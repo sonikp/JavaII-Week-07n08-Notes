@@ -31,12 +31,13 @@ public class SubmenuEx extends JFrame
 
         JMenuBar menubar = new JMenuBar();
 
-        ImageIcon iconNew = new ImageIcon("new.png");
-        ImageIcon iconOpen = new ImageIcon("open.png");
-        ImageIcon iconSave = new ImageIcon("save.png");
-        ImageIcon iconExit = new ImageIcon("exit.png");
+        ImageIcon iconNew = new ImageIcon("icon/New.png");
+        ImageIcon iconOpen = new ImageIcon("icon/OK.png");
+        ImageIcon iconSave = new ImageIcon("icon/Save.png");
+        ImageIcon iconExit = new ImageIcon("icon/Exit.png");
 
         JMenu fileMenu = new JMenu("File");
+        JMenu editMenu = new JMenu("Edit");
 
         JMenu impMenu = new JMenu("Import");
 
@@ -74,6 +75,7 @@ public class SubmenuEx extends JFrame
         fileMenu.add(exitMi);
 
         menubar.add(fileMenu);
+        menubar.add(editMenu);
 
         setJMenuBar(menubar);
     }

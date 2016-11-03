@@ -18,6 +18,9 @@
 		
 		/*
 		
+		icons:
+		http://www.small-icons.com/packs/24x24-free-application-icons.htm
+		
 		Tutorials:
 		https://www.google.com/webhp?sourceid=chrome-instant&ion=1&espv=2&ie=UTF-8#q=beginning%20java%20swing%20tutorial
 		https://docs.oracle.com/javase/tutorial/uiswing/examples/components/

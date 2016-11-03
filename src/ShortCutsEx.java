@@ -87,7 +87,7 @@ public class ShortCutsEx extends JFrame
         public void actionPerformed(ActionEvent e) 
         {
 
-            System.out.println(e.getActionCommand());
+            System.out.println("foo" + e.getActionCommand());
         }
     }
 

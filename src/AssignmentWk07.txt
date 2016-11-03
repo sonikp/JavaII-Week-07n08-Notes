@@ -1,6 +1,16 @@
 Java II
 Assignment 7
 
+Downloaded Original files;
+
+DrawControlApp.java	-	main class file, executes and call the ControlFrame.java
+
+ControlFrame.java - is not responsible for drawing; it is responsible for controlling which kind of JPanel is currently active and displayed. 
+
+DrawControlPanel.java
+
+DrawImageControlPanel.java
+
 Media App
 
 Create a class called DrawImageControlPanel.  Modify the code presented in the Module 5 slides (also posted separately on the Resources page) 
