@@ -52,6 +52,30 @@ public class ControlFrame extends JFrame
     
     JMenu fileMenu = new JMenu( "File" );
     fileMenu.setMnemonic( 'F' );
+    
+    // ------- ex - adding edit menu - this is not working
+    /*
+     * edit menu works, controlled by JMenuBar
+     * 
+     * ActionListener not working, and 
+     */
+    JMenu editMenu = new JMenu( "Edit" );
+    editMenu.setMnemonic( 'E' );
+    
+    fileMenu.add( editMenu );
+    editMenu.addActionListener(
+      new ActionListener()
+      {
+    	  public void actionPerformed( ActionEvent event )
+    	  {
+    		  JOptionPane.showMessageDialog( ControlFrame.this, 
+    				  "Project 5 Week 7", "Project", JOptionPane.PLAIN_MESSAGE );
+    	  }
+      }
+
+    );
+    // ------- END - ex - adding edit menu 
+    
     JMenuItem aboutItem = new JMenuItem( "About..." );
     aboutItem.setMnemonic( 'A' );
     fileMenu.add( aboutItem );
@@ -66,10 +90,26 @@ public class ControlFrame extends JFrame
         }
      }  // End of anonymous inner class
     );
+    
+    //  -------  ex - project title: this worked
+    JMenuItem projectItem = new JMenuItem( "Project..." );
+    projectItem.setMnemonic( 'P' );
+    fileMenu.add( projectItem );
+    projectItem.addActionListener(
+      new ActionListener()  // Beginning of anonymous inner class
+      {
+        public void actionPerformed( ActionEvent event )
+        {
+          JOptionPane.showMessageDialog( ControlFrame.this,
+                                      "Project 5 Week 7", "Project", JOptionPane.PLAIN_MESSAGE );
+        }
+     }  // End of anonymous inner class
+    );	//  -------  END - ex - project title
       
     final JMenuBar bar = new JMenuBar();  // Create a JMenuBar so we can attach menus to it.
     setJMenuBar( bar );  // Attach the JMenuBar to the ControlFrame.
     bar.add( fileMenu );  // Add the file menu to the JMenuBar.
+    bar.add( editMenu );  // -----ex added edit menu to main bar
   
     final JMenu colorMenu = new JMenu( "Color" );
     colorMenu.setMnemonic( 'C' );

@@ -1,0 +1,8 @@
+Assignment Week 07
+
+DrawControlApp.java = calls ControlFrame.java
+
+1. sets up a control panel, Don't understand this yet
+2. JMenu = creates a JMenu item called "File"
+3. JMenuBar = creates a menu bar to attach JMenu items to
+4. ControlFrame.java = color items are for the color menu for the "Draw menu"

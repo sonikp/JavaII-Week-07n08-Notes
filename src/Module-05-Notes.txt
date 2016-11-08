@@ -30,6 +30,9 @@
 		http://zetcode.com/tutorials/javaswingtutorial/				
 		http://zetcode.com/tutorials/javaswingtutorial/menusandtoolbars/ //ShortCutsEx.java
 		
+		Need to look at events
+		http://zetcode.com/tutorials/javaswingtutorial/swingevents/
+		
 		
 		
 		
