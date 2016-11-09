@@ -6,3 +6,13 @@ DrawControlApp.java = calls ControlFrame.java
 2. JMenu = creates a JMenu item called "File"
 3. JMenuBar = creates a menu bar to attach JMenu items to
 4. ControlFrame.java = color items are for the color menu for the "Draw menu"
+
+Currently working on:
+ImageControlApp.java = launches application
+ImageControlFrame.java = sets up the frame
+ImageControlPanel.java = rectangle objects and methods
+DrawControlPanel.java	=	oval object and methods
+
+Draw oval working
+Draw rectangle working
+change color working

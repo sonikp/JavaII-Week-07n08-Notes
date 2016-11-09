@@ -28,6 +28,8 @@ public class ControlFrame extends JFrame
   private JPanel mainPanel;
   private final JPanel calcPanel;
   private JSlider widthJSlider;
+  private JSlider widthJSliderRect;
+  
   private JTextField xValTextField;
   private JTextField yValTextField;
   private JLabel calcJLabel;
@@ -48,6 +50,22 @@ public class ControlFrame extends JFrame
     final DrawControlPanel drawPanel = new DrawControlPanel();
     drawPanel.setSize(200, 200);    
     
+    
+    // drawing test for show Picture to draw a rectangle
+    final DrawImageControlPanel drawImagePanel = new DrawImageControlPanel();
+    drawImagePanel.setSize(200, 200);
+    
+    
+    // displaying an image file
+    //final DrawPictureControlPanel getPiccy = new DrawPictureControlPanel(FileChooser.pickAFile());
+    final DrawPictureControlPanel getPiccy = null;
+    //getPiccy = new DrawPictureControlPanel(FileChooser.pickAFile());
+    
+    // try load image
+    //Picture p = new Picture(FileChooser.getMediaPath("gokart.png"));
+    //Picture p = new Picture(FileChooser.pickAFile());
+    
+    
     this.setContentPane( mainPanel );
     
     JMenu fileMenu = new JMenu( "File" );
@@ -61,8 +79,13 @@ public class ControlFrame extends JFrame
      */
     JMenu editMenu = new JMenu( "Edit" );
     editMenu.setMnemonic( 'E' );
-    
     fileMenu.add( editMenu );
+    
+    JMenuItem cutFunction = new JMenuItem( "Cut" );
+    cutFunction.setMnemonic( 't' );
+    editMenu.add( cutFunction );
+    
+    /*
     editMenu.addActionListener(
       new ActionListener()
       {
@@ -75,6 +98,7 @@ public class ControlFrame extends JFrame
 
     );
     // ------- END - ex - adding edit menu 
+     */
     
     JMenuItem aboutItem = new JMenuItem( "About..." );
     aboutItem.setMnemonic( 'A' );
@@ -174,9 +198,14 @@ public class ControlFrame extends JFrame
       {
         public void actionPerformed( ActionEvent event )
         {
+          // remove items	
           bar.remove( colorMenu );
           mainPanel.remove( drawPanel );
+          mainPanel.remove( drawImagePanel );
           mainPanel.remove( widthJSlider );
+          mainPanel.remove( widthJSliderRect );
+          
+          // create new surface
           xValTextField.setText("");
           yValTextField.setText("");
           calcJLabel.setText( "" );
@@ -196,7 +225,12 @@ public class ControlFrame extends JFrame
         public void actionPerformed( ActionEvent event )
         {
           bar.add( colorMenu );         
+          // remove items
           mainPanel.remove( calcPanel );
+          mainPanel.remove( drawImagePanel );
+          mainPanel.remove( widthJSliderRect );
+          
+          // create new surface
           drawPanel.setBackground( Color.WHITE );
           mainPanel.add( drawPanel, BorderLayout.CENTER );
           mainPanel.add( widthJSlider, BorderLayout.SOUTH );          
@@ -206,21 +240,40 @@ public class ControlFrame extends JFrame
       }
     );
      
-    JMenuItem showPanelItem = new JMenuItem( "ShowPicture" );
-    showPanelItem.setMnemonic( 'S' );
-    fileMenu.add( showPanelItem );
-    showPanelItem.addActionListener(
+    JMenuItem showPicture = new JMenuItem( "ShowPicture" );
+    showPicture.setMnemonic( 'S' );
+    fileMenu.add( showPicture );
+    showPicture.addActionListener(
       new ActionListener()
       {
         public void actionPerformed( ActionEvent event )
         {
-          bar.add( colorMenu );         
+         
+          // remove drawPanel
+          bar.remove( colorMenu );  
+          mainPanel.remove( drawPanel );
+          mainPanel.remove( widthJSlider );
+          // remove calcPanel
           mainPanel.remove( calcPanel );
+          
+         
+          
+          // create new panel
+          drawImagePanel.setBackground( Color.WHITE );
+          mainPanel.add( drawImagePanel, BorderLayout.CENTER );
+          mainPanel.add( widthJSliderRect, BorderLayout.SOUTH );
+          
+          /*
+          // junk
+          mainPanel.remove( calcPanel );
+          mainPanel.remove( drawPanel );
           drawPanel.setBackground( Color.WHITE );
           mainPanel.add( drawPanel, BorderLayout.CENTER );
-          mainPanel.add( widthJSlider, BorderLayout.SOUTH );          
+          mainPanel.add( widthJSlider, BorderLayout.SOUTH );  
+          */
           validate();
           repaint();
+          
         }
       }
     );
@@ -233,11 +286,16 @@ public class ControlFrame extends JFrame
       {
         public void actionPerformed( ActionEvent event )
         {
+          mainPanel.removeAll();
+         // getPiccy = new DrawPictureControlPanel(FileChooser.pickAFile());
+        	/*
           bar.add( colorMenu );         
           mainPanel.remove( calcPanel );
           drawPanel.setBackground( Color.WHITE );
           mainPanel.add( drawPanel, BorderLayout.CENTER );
           mainPanel.add( widthJSlider, BorderLayout.SOUTH );          
+          */
+          
           validate();
           repaint();
         }
@@ -257,6 +315,7 @@ public class ControlFrame extends JFrame
       }
     );
     
+    // Oval control
     widthJSlider = new JSlider( SwingConstants.HORIZONTAL, 0, 100, drawPanel.getOvalWidth() );
     widthJSlider.setMajorTickSpacing( 10 );
     widthJSlider.setPaintTicks( true );
@@ -271,7 +330,27 @@ public class ControlFrame extends JFrame
         }
       }
     );
-        
+    
+    
+    // Rectangle control
+    widthJSliderRect = new JSlider( SwingConstants.HORIZONTAL, 0, 100, drawImagePanel.getRectWidth() );
+    widthJSliderRect.setMajorTickSpacing( 10 );
+    widthJSliderRect.setPaintTicks( true );
+    
+    widthJSliderRect.addChangeListener(
+      new ChangeListener()
+      {
+        public void stateChanged( ChangeEvent e )
+        {
+        	drawImagePanel.setRectWidth( widthJSliderRect.getValue() );
+          repaint();
+        }
+      }
+    );
+    
+    
+    
+    
     xValTextField = new JTextField( 3 );
     xValTextField.addActionListener(
       new ActionListener()

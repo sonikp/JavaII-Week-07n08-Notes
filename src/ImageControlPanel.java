@@ -2,12 +2,12 @@ import java.awt.Color;
 import java.awt.Graphics;
 import javax.swing.JPanel;
 
-public class DrawImageControlPanel extends JPanel
+public class ImageControlPanel extends JPanel
 {
 	private Color fillColor = Color.RED;
 	private int rectWidth = 90;
 	  
-	  public DrawImageControlPanel()
+	  public ImageControlPanel()
 	  {
 	    setSize( 200, 200 ); 
 	  }
@@ -34,5 +34,5 @@ public class DrawImageControlPanel extends JPanel
 	  int getRectWidth()
 	  {
 	    return rectWidth;  
-	  }  
+	  }   
 }
