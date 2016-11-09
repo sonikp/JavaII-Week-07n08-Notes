@@ -26,12 +26,20 @@ import javax.swing.JOptionPane;
 public class ImageControlFrame extends JFrame
 {
 	private JPanel mainPanel;
-	private Picture chosenImage;
+	
 	
 	private final JPanel calcPanel;
 	private JSlider widthJSlider;
 	private JSlider widthJSliderRect;
 	
+	/*
+	private JTextField xValTextField;
+	private JTextField yValTextField;
+	private JLabel calcJLabel;
+	private JButton calcJButton;
+	private String xStr;
+	private String yStr;
+	*/
 	
 	public ImageControlFrame(String title)
 	{
@@ -52,12 +60,10 @@ public class ImageControlFrame extends JFrame
 	    final ImageControlPanel drawImagePanel = new ImageControlPanel();
 	    drawImagePanel.setSize(200, 200);
 	    
-	    // attempting to access class object method ImageControlPicture
-	    ImageControlPicture importImage = new ImageControlPicture();
+	    
 	    
 	    
 	    // displaying an image file
-	    //FileChooser.setMediaPath("/Users/Shared/Java-Libraries/CourseCD/mediasources/");
 	    //final DrawPictureControlPanel getPiccy = new DrawPictureControlPanel(FileChooser.pickAFile());
 	    //final DrawPictureControlPanel getPiccy = null;
 	    //getPiccy = new DrawPictureControlPanel(FileChooser.pickAFile());
@@ -72,53 +78,19 @@ public class ImageControlFrame extends JFrame
 	    JMenu fileMenu = new JMenu( "File" );
 	    fileMenu.setMnemonic( 'F' );
 	    
+	    // ------- ex - adding edit menu - this is not working
+	    /*
+	     * edit menu works, controlled by JMenuBar
+	     * 
+	     * ActionListener not working, and 
+	     */
 	    JMenu editMenu = new JMenu( "Edit" );
 	    editMenu.setMnemonic( 'E' );
 	    fileMenu.add( editMenu );
 	    
-	    JMenuItem chooseFunction = new JMenuItem( "ChooseFile" );
-	    chooseFunction.setMnemonic( 'o' );
-	    editMenu.add( chooseFunction );
-	    chooseFunction.addActionListener(
-		    new ActionListener()
-		    {
-		    	public void actionPerformed ( ActionEvent event )
-		    	{
-		    		FileChooser.setMediaPath("/Users/Shared/Java-Libraries/CourseCD/mediasources/");
-		    		chosenImage = new Picture(FileChooser.pickAFile());
-		    		chosenImage.show();
-		    	}
-		    }
-	    
-	    		
-	    );
-	    
-	    JMenuItem newImage = new JMenuItem( "NewImageFromDifferentClass" );
-	    newImage.setMnemonic( 'D' );
-	    editMenu.add(newImage);
-	    newImage.addActionListener(
-	  	      new ActionListener()
-	  	      {
-	  	    	  public void actionPerformed( ActionEvent event )
-	  	    	  {
-	  	    		  
-	  	    		  //Picture getPicture = new Picture(FileChooser.pickAFile());
-	  	    		  //getPicture.show();
-	  	    		FileChooser.setMediaPath("/Users/Shared/Java-Libraries/CourseCD/mediasources/");
-	  	    		//Picture subject = new Picture(FileChooser.getMediaPath("oxford-cricketers.jpg"));	
-	  	    		//Picture background = new Picture(FileChooser.getMediaPath("beach.jpg"));
-	  	    		ImageControlPicture subject = new ImageControlPicture(FileChooser.getMediaPath("oxford-cricketers.jpg"));
-	  	    		ImageControlPicture background = new ImageControlPicture(FileChooser.getMediaPath("beach.jpg"));
-	  	    		subject.show();
-	  	    		
-	  	    		//subject.chromakeyAssignment(background, 382, 340, 444, 390);
-	  	    		//importImage.chromakeyAssignment(background, 382, 340, 444, 390);
-	  	    		importImage.show();
-	  	    		  
-	  	    	  }
-	  	      }
-
-	  	    );
+	    JMenuItem cutFunction = new JMenuItem( "Cut" );
+	    cutFunction.setMnemonic( 't' );
+	    editMenu.add( cutFunction );
 	    
 	    
 	    editMenu.addActionListener(
@@ -132,7 +104,7 @@ public class ImageControlFrame extends JFrame
 	      }
 
 	    );
-	    
+	    // ------- END - ex - adding edit menu 
 	     
 	    
 	    JMenuItem aboutItem = new JMenuItem( "About..." );
@@ -150,7 +122,7 @@ public class ImageControlFrame extends JFrame
 	     }  // End of anonymous inner class
 	    );
 	    
-	    //  
+	    //  -------  ex - project title: this worked
 	    JMenuItem projectItem = new JMenuItem( "Project..." );
 	    projectItem.setMnemonic( 'P' );
 	    fileMenu.add( projectItem );
@@ -163,12 +135,12 @@ public class ImageControlFrame extends JFrame
 	                                      "Project 5 Week 7", "Project", JOptionPane.PLAIN_MESSAGE );
 	        }
 	     }  // End of anonymous inner class
-	    );	
+	    );	//  -------  END - ex - project title
 	      
-	    final JMenuBar bar = new JMenuBar();  	// Create a JMenuBar so we can attach menus to it.
-	    setJMenuBar( bar );  					// Attach the JMenuBar to the ControlFrame.
-	    bar.add( fileMenu );  					// Add the file menu to the JMenuBar.
-	    bar.add( editMenu );  					// -----ex added edit menu to main bar
+	    final JMenuBar bar = new JMenuBar();  // Create a JMenuBar so we can attach menus to it.
+	    setJMenuBar( bar );  // Attach the JMenuBar to the ControlFrame.
+	    bar.add( fileMenu );  // Add the file menu to the JMenuBar.
+	    bar.add( editMenu );  // -----ex added edit menu to main bar
 	  
 	    
 	    
@@ -233,7 +205,33 @@ public class ImageControlFrame extends JFrame
 	    );
 	     
 	    
-		    
+	    /*
+	    JMenuItem calcPanelItem = new JMenuItem( "Calculate" );
+	    calcPanelItem.setMnemonic( 'C' );
+	    fileMenu.add( calcPanelItem );
+	    calcPanelItem.addActionListener(
+	      new ActionListener()
+	      {
+	        public void actionPerformed( ActionEvent event )
+	        {
+	          // remove items	
+	          bar.remove( colorMenu );
+	          mainPanel.remove( drawPanel );
+	          mainPanel.remove( drawImagePanel );
+	          mainPanel.remove( widthJSlider );
+	          mainPanel.remove( widthJSliderRect );
+	          
+	          // create new surface
+	          xValTextField.setText("");
+	          yValTextField.setText("");
+	          calcJLabel.setText( "" );
+	          mainPanel.add( calcPanel, BorderLayout.CENTER );
+	          validate();
+	          repaint();
+	        }
+	      }
+	    );
+	    */
 	    
 	    
 	    JMenuItem drawPanelItem = new JMenuItem( "DrawPanel" );
@@ -271,37 +269,66 @@ public class ImageControlFrame extends JFrame
 	      {
 	        public void actionPerformed( ActionEvent event )
 	        {
-	        	// remove all
-		        mainPanel.removeAll();
+	         
+	          // remove drawPanel
+	          bar.remove( colorMenu );  
+	          mainPanel.remove( drawPanel );
+	          mainPanel.remove( widthJSlider );
+	          // remove calcPanel
+	          mainPanel.remove( calcPanel );
+	          
 	         
 	          
-	        	/*
-	          	// remove individual items drawPanel
-	          	bar.remove( colorMenu );  
-	          	mainPanel.remove( drawPanel );
-	          	mainPanel.remove( widthJSlider );
-	          	// remove calcPanel
-	          	mainPanel.remove( calcPanel );
-	        	 */
-	         
+	          // create new panel
+	          bar.add( colorMenu ); 
+	          drawImagePanel.setBackground( Color.WHITE );
+	          mainPanel.add( drawImagePanel, BorderLayout.CENTER );
+	          mainPanel.add( widthJSliderRect, BorderLayout.SOUTH );
 	          
-		        // create new panel
-		        bar.add( colorMenu ); 
-		        drawImagePanel.setBackground( Color.WHITE );
-		        mainPanel.add( drawImagePanel, BorderLayout.CENTER );
-		        mainPanel.add( widthJSliderRect, BorderLayout.SOUTH );
+	          /*
+	          // junk
+	          mainPanel.remove( calcPanel );
+	          mainPanel.remove( drawPanel );
+	          drawPanel.setBackground( Color.WHITE );
+	          mainPanel.add( drawPanel, BorderLayout.CENTER );
+	          mainPanel.add( widthJSlider, BorderLayout.SOUTH );  
+	          */
 	          
-
-	          
-		         validate();
-		         repaint();
+	          validate();
+	          repaint();
 	          
 	        }
 	      }
 	    );
 	    
 	    
+	    /*
 	    
+	    JMenuItem soundPanelItem = new JMenuItem( "SoundPanel" );
+	    soundPanelItem.setMnemonic( 'P' );
+	    fileMenu.add( soundPanelItem );
+	    soundPanelItem.addActionListener(
+	      new ActionListener()
+	      {
+	        public void actionPerformed( ActionEvent event )
+	        {
+	          mainPanel.removeAll();
+	         // getPiccy = new DrawPictureControlPanel(FileChooser.pickAFile());
+				*/
+	        	/*
+	          bar.add( colorMenu );         
+	          mainPanel.remove( calcPanel );
+	          drawPanel.setBackground( Color.WHITE );
+	          mainPanel.add( drawPanel, BorderLayout.CENTER );
+	          mainPanel.add( widthJSlider, BorderLayout.SOUTH );          
+	          */
+	          /*
+	          validate();
+	          repaint();
+	        }
+	      }
+	    );
+	    */
 	    
 	    JMenuItem exitItem = new JMenuItem( "Exit" );
 	    exitItem.setMnemonic( 'x' );
@@ -352,6 +379,60 @@ public class ImageControlFrame extends JFrame
 	    );
 	    
 	    
+	    /*
+	    
+	    xValTextField = new JTextField( 3 );
+	    xValTextField.addActionListener(
+	      new ActionListener()
+	      {
+	        public void actionPerformed( ActionEvent event )
+	        {
+	          xStr = event.getActionCommand();
+	        }
+	      }
+	    );                                                                       
+
+	    calcPanel.add( xValTextField );
+
+	    yValTextField = new JTextField( 3 );
+	    yValTextField.addActionListener(
+	      new ActionListener()
+	      {
+	        public void actionPerformed( ActionEvent event )
+	        {
+	          yStr = event.getActionCommand();
+	        }
+	      }
+	    );     
+
+	    calcPanel.add( yValTextField );
+	    
+	    calcJButton = new JButton( "Calculate" );   
+	    calcJButton.addActionListener(
+	      new ActionListener()
+	      {
+	        public void actionPerformed( ActionEvent event )
+	        {
+	          try {       
+	            int x = Integer.parseInt( xStr );
+	            int y = Integer.parseInt( yStr );
+	            int result = x + y;
+	            calcJLabel.setText(xStr + " + " + yStr + " = " + result);
+	          }
+	          catch (NumberFormatException e) {
+	            JOptionPane.showMessageDialog( ImageControlFrame.this, "You must enter a valid number and then <ENTER> for each textbox!", "Invalid Input", JOptionPane.ERROR_MESSAGE );
+	            e.printStackTrace();
+	          }
+	        }
+	      }
+	    );
+	    */
+	    /*
+	    calcPanel.add( calcJButton );
+	    
+	    calcJLabel = new JLabel();
+	    calcPanel.add( calcJLabel, BorderLayout.CENTER );
+	    */
 	    setDefaultCloseOperation( JFrame.EXIT_ON_CLOSE );
 
 	    setSize( 200, 250 );
