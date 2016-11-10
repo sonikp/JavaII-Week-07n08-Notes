@@ -282,7 +282,7 @@ public class ImageControlFrame extends JFrame
 	        {
 	        	// remove all
 		        mainPanel.removeAll();
-	         
+		        /*
 		        FileChooser.setMediaPath("/Users/Shared/Java-Libraries/CourseCD/mediasources/");
   	    		ImageControlPicture subject = new ImageControlPicture(FileChooser.getMediaPath("gokart.png"));
   	    		
@@ -291,16 +291,16 @@ public class ImageControlFrame extends JFrame
   	    		image = new JLabel("", new ImageIcon(imageName), JPanel.WIDTH);
   	    		
   	    		mainPanel.add(image, BorderLayout.CENTER);
+		        */
 		        
-		        
-	        	/*
+	        	
 	          	// remove individual items drawPanel
 	          	bar.remove( colorMenu );  
 	          	mainPanel.remove( drawPanel );
 	          	mainPanel.remove( widthJSlider );
 	          	// remove calcPanel
 	          	mainPanel.remove( calcPanel );
-	        	 */
+	        	 
 		        
 		        /*
 		        FileChooser.setMediaPath("/Users/Shared/Java-Libraries/CourseCD/mediasources/");
@@ -310,13 +310,13 @@ public class ImageControlFrame extends JFrame
   	    		JPanel jp = new JPanel();
   	    		jp.getGraphics().
   	    		*/
-	          /*
+	         
 		        // create new panel
 		        bar.add( colorMenu ); 
 		        drawImagePanel.setBackground( Color.WHITE );
 		        mainPanel.add( drawImagePanel, BorderLayout.CENTER );
 		        mainPanel.add( widthJSliderRect, BorderLayout.SOUTH );
-				*/
+				
 	          
 
 	          

@@ -9,7 +9,7 @@ public class ImageControlPanel extends JPanel
 	  
 	  public ImageControlPanel()
 	  {
-	    setSize( 200, 200 ); 
+	    setSize( 500, 500 ); 
 	  }
 	  
 	  public void paintComponent( Graphics g )

@@ -47,7 +47,7 @@ public class ImageControlPicture extends Picture
 			  
 		  for ( Pixel value : pixelArray)
 		  {
-			  System.out.println(value.getBlue());
+			  //System.out.println(value.getBlue());
 			  value.setBlue(0);
 		  }
 	  }

@@ -38,6 +38,8 @@
 		https://www3.ntu.edu.sg/home/ehchua/programming/java/J4a_GUI_2.html
 		
 		
+		https://www.tutorialspoint.com/swing/swing_imageicon.htm
+		
 		The Java Tutorials: Creating a GUI with JFC.Swing ( The Swing Tutorial )
 		http://java.sun.com/docs/books/tutorial/uiswing/
 		
