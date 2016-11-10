@@ -16,3 +16,9 @@ DrawControlPanel.java	=	oval object and methods
 Draw oval working
 Draw rectangle working
 change color working
+
+
+Added ImageControlFrameTest to get image working:
+http://stackoverflow.com/questions/17219129/how-to-use-jfilechooser-to-display-image-in-a-jpanel
+
+http://stackoverflow.com/questions/299495/how-to-add-an-image-to-a-jpanel

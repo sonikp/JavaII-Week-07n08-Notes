@@ -7,6 +7,7 @@ import javax.swing.JPanel;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
 import javax.swing.JMenuBar;
+import javax.swing.JFileChooser;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.ItemListener;
@@ -19,6 +20,7 @@ import javax.swing.event.ChangeEvent;
 import java.awt.BorderLayout;
 import javax.swing.JTextField;
 import javax.swing.JLabel;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
 
@@ -31,7 +33,7 @@ public class ImageControlFrame extends JFrame
 	private final JPanel calcPanel;
 	private JSlider widthJSlider;
 	private JSlider widthJSliderRect;
-	
+	private JLabel image;
 	
 	public ImageControlFrame(String title)
 	{
@@ -54,6 +56,7 @@ public class ImageControlFrame extends JFrame
 	    
 	    // attempting to access class object method ImageControlPicture
 	    ImageControlPicture importImage = new ImageControlPicture();
+	    
 	    
 	    
 	    // displaying an image file
@@ -84,9 +87,18 @@ public class ImageControlFrame extends JFrame
 		    {
 		    	public void actionPerformed ( ActionEvent event )
 		    	{
+		    		drawImagePanel.setBackground( Color.BLUE );
+			        mainPanel.add( drawImagePanel, BorderLayout.CENTER );
+			        
+			        validate();
+			        repaint();
+		    		
+		    		/*
 		    		FileChooser.setMediaPath("/Users/Shared/Java-Libraries/CourseCD/mediasources/");
 		    		chosenImage = new Picture(FileChooser.pickAFile());
 		    		chosenImage.show();
+		    		*/
+		    		
 		    	}
 		    }
 	    
@@ -101,19 +113,15 @@ public class ImageControlFrame extends JFrame
 	  	      {
 	  	    	  public void actionPerformed( ActionEvent event )
 	  	    	  {
+	  	    		
 	  	    		  
-	  	    		  //Picture getPicture = new Picture(FileChooser.pickAFile());
-	  	    		  //getPicture.show();
 	  	    		FileChooser.setMediaPath("/Users/Shared/Java-Libraries/CourseCD/mediasources/");
-	  	    		//Picture subject = new Picture(FileChooser.getMediaPath("oxford-cricketers.jpg"));	
-	  	    		//Picture background = new Picture(FileChooser.getMediaPath("beach.jpg"));
-	  	    		ImageControlPicture subject = new ImageControlPicture(FileChooser.getMediaPath("oxford-cricketers.jpg"));
-	  	    		ImageControlPicture background = new ImageControlPicture(FileChooser.getMediaPath("beach.jpg"));
+	  	    		ImageControlPicture subject = new ImageControlPicture(FileChooser.getMediaPath("gokart.png"));
+	  	    		subject.clearBlue();
 	  	    		subject.show();
 	  	    		
-	  	    		//subject.chromakeyAssignment(background, 382, 340, 444, 390);
-	  	    		//importImage.chromakeyAssignment(background, 382, 340, 444, 390);
-	  	    		importImage.show();
+	  	    		// Attempted to make the object a global object not a method object
+	  	    		//importImage.show();
 	  	    		  
 	  	    	  }
 	  	      }
@@ -143,7 +151,8 @@ public class ImageControlFrame extends JFrame
 	      {
 	        public void actionPerformed( ActionEvent event )
 	        {
-	          JOptionPane.showMessageDialog( ImageControlFrame.this,
+	        	
+	        	JOptionPane.showMessageDialog( ImageControlFrame.this,
 	                                      "This application provides enhanced\n control over multimedia projects.",
 	                                      "About", JOptionPane.PLAIN_MESSAGE );
 	        }
@@ -274,7 +283,16 @@ public class ImageControlFrame extends JFrame
 	        	// remove all
 		        mainPanel.removeAll();
 	         
-	          
+		        FileChooser.setMediaPath("/Users/Shared/Java-Libraries/CourseCD/mediasources/");
+  	    		ImageControlPicture subject = new ImageControlPicture(FileChooser.getMediaPath("gokart.png"));
+  	    		
+  	    		JFileChooser fc = new JFileChooser();
+  	    		String imageName = "/Users/Shared/Java-Libraries/CourseCD/mediasources/gokart.png";
+  	    		image = new JLabel("", new ImageIcon(imageName), JPanel.WIDTH);
+  	    		
+  	    		mainPanel.add(image, BorderLayout.CENTER);
+		        
+		        
 	        	/*
 	          	// remove individual items drawPanel
 	          	bar.remove( colorMenu );  
@@ -283,13 +301,22 @@ public class ImageControlFrame extends JFrame
 	          	// remove calcPanel
 	          	mainPanel.remove( calcPanel );
 	        	 */
-	         
-	          
+		        
+		        /*
+		        FileChooser.setMediaPath("/Users/Shared/Java-Libraries/CourseCD/mediasources/");
+  	    		ImageControlPicture subject = new ImageControlPicture(FileChooser.getMediaPath("gokart.png"));
+  	    		subject.clearBlue();
+  	    		subject.show();
+  	    		JPanel jp = new JPanel();
+  	    		jp.getGraphics().
+  	    		*/
+	          /*
 		        // create new panel
 		        bar.add( colorMenu ); 
 		        drawImagePanel.setBackground( Color.WHITE );
 		        mainPanel.add( drawImagePanel, BorderLayout.CENTER );
 		        mainPanel.add( widthJSliderRect, BorderLayout.SOUTH );
+				*/
 	          
 
 	          
@@ -299,6 +326,48 @@ public class ImageControlFrame extends JFrame
 	        }
 	      }
 	    );
+	    
+	    /*
+	     // backup of method before JPanel manipulation
+	    JMenuItem showPicture = new JMenuItem( "ShowPicture" );
+	    showPicture.setMnemonic( 'S' );
+	    fileMenu.add( showPicture );
+	    showPicture.addActionListener(
+	      new ActionListener()
+	      {
+	        public void actionPerformed( ActionEvent event )
+	        {
+	        	// remove all
+		        mainPanel.removeAll();
+	         
+	          
+	        	
+	          	// remove individual items drawPanel
+	          	bar.remove( colorMenu );  
+	          	mainPanel.remove( drawPanel );
+	          	mainPanel.remove( widthJSlider );
+	          	// remove calcPanel
+	          	mainPanel.remove( calcPanel );
+	        	 
+		        
+	          
+		        // create new panel
+		        bar.add( colorMenu ); 
+		        drawImagePanel.setBackground( Color.WHITE );
+		        mainPanel.add( drawImagePanel, BorderLayout.CENTER );
+		        mainPanel.add( widthJSliderRect, BorderLayout.SOUTH );
+
+	          
+
+	          
+		         validate();
+		         repaint();
+	          
+	        }
+	      }
+	    );
+	    
+	    */
 	    
 	    
 	    

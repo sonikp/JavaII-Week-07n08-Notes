@@ -40,41 +40,19 @@ public class ImageControlPicture extends Picture
 	  }
 	  
 	  // methods
-	  public void chromakeyAssignment(Picture background, int x, int y, int width, int height)	
+	  
+	  public void clearBlue()
 	  {
-		  
-		  // Create Pixel object
-		  Pixel currPixel = null;
-		  Pixel newPixel = null;
-		  
-		  // color settings for filtering out image from another picture
-	   	  int colorThreshold = 90;
-	   	  int colorTotal = 140;
-	   	  
-	   	  // local x & y positions
-		  int posX;
-		  int posY;
-		  
-		  // step through the columns
-		  for ( posX = x; posX < width; posX++)
+		  Pixel[] pixelArray = this.getPixels();
+			  
+		  for ( Pixel value : pixelArray)
 		  {
-			  // step through the rows
-			  for ( posY = y; posY < height; posY++)
-			  {
-				  // get color from subject
-				  currPixel = this.getPixel(posX, posY);
-				  
-				  // create the filter for separating the darkest part of the selected image
-				  if ( currPixel.getRed() < colorThreshold || currPixel.getGreen() < colorThreshold 
-						  || currPixel.getBlue() < colorThreshold && (currPixel.getRed() 
-						  + currPixel.getGreen() + currPixel.getBlue() < colorTotal) ) 
-				  {
-					  newPixel = background.getPixel(posX - 120, posY - 55);
-					  newPixel.setColor(currPixel.getColor());
-				  }
-			  }
+			  System.out.println(value.getBlue());
+			  value.setBlue(0);
 		  }
 	  }
+	  
+	  
 	  
 	  /**
 	   * Method to return a string with information about this picture.

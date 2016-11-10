@@ -33,7 +33,9 @@
 		Need to look at events
 		http://zetcode.com/tutorials/javaswingtutorial/swingevents/
 		
-		
+		Programming Graphical User Interface (GUI)
+		http://www3.ntu.edu.sg/home/ehchua/programming/java/j4a_gui.html
+		https://www3.ntu.edu.sg/home/ehchua/programming/java/J4a_GUI_2.html
 		
 		
 		The Java Tutorials: Creating a GUI with JFC.Swing ( The Swing Tutorial )
