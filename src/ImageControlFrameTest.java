@@ -14,20 +14,29 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ItemListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.InputStream;
+import java.lang.reflect.Array;
 import java.awt.event.ItemEvent;
 import javax.swing.JOptionPane;
 import javax.swing.JSlider;
 import javax.swing.SwingConstants;
 import javax.swing.event.ChangeListener;
 
-
+import sun.audio.AudioPlayer;
+import sun.audio.AudioStream;
 
 import javax.swing.event.ChangeEvent;
 import java.awt.BorderLayout;
 import javax.swing.JTextField;
 import javax.swing.JLabel;
 import javax.imageio.ImageIO;
+//import javax.sound.sampled.AudioInputStream;
+//import javax.sound.sampled.AudioSystem;
+//import javax.sound.sampled.Clip;
+//import javax.sound.sampled.LineUnavailableException;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
@@ -76,6 +85,7 @@ public class ImageControlFrameTest extends JFrame
 //	            int result = fc.showOpenDialog(null);
 //	            if (result == JFileChooser.APPROVE_OPTION) 
 	            {
+	            	 mainPanel.removeAll();
 //	                File file = fc.getSelectedFile();
 //	                String sname = file.getAbsolutePath(); //THIS WAS THE PROBLEM
 	                String sname = "/Users/Shared/Java-Libraries/CourseCD/mediasources/gokart.png";
@@ -84,7 +94,7 @@ public class ImageControlFrameTest extends JFrame
 //	                imageNoBlue.clearBlue();
 	                //imageNoBlue.show();
 	                
-	                image = new JLabel("", new ImageIcon(sname), JLabel.CENTER);	//sname
+	                image = new JLabel(new ImageIcon(sname), JLabel.CENTER);	//sname
 	                mainPanel.add(image, BorderLayout.CENTER);
 	                mainPanel.revalidate(); //ADD THIS AS WELL
 	                mainPanel.repaint();  //ADD THIS AS WELL
@@ -94,37 +104,129 @@ public class ImageControlFrameTest extends JFrame
 	     }  // End of anonymous inner class
 	     );
 	    
-	    JMenuItem showMore = new JMenuItem( "ShowMore..." );
-	    showMore.setMnemonic( 'M' );
-	    fileMenu.add( showMore );
-	    showMore.addActionListener(
+	    JMenuItem ShowImage = new JMenuItem( "ShowImage..." );
+	    ShowImage.setMnemonic( 'I' );
+	    fileMenu.add( ShowImage );
+	    ShowImage.addActionListener(
 	      new ActionListener()  // Beginning of anonymous inner class
 	      {
 	        public void actionPerformed( ActionEvent event )
 	        {
-	        	//http://stackoverflow.com/questions/5895829/resizing-image-in-java
+	        	 mainPanel.removeAll();
+	
 	        	
 	        	String sname = "/Users/Shared/Java-Libraries/CourseCD/mediasources/arch.jpg";
                 
-	        	
-				
-//				ImageIcon imageIcon = new ImageIcon(sname); // load the image to a imageIcon
-//				Image image = imageIcon.getImage(); // transform it 
-//				Image newimg = image.getScaledInstance(20, 20,  java.awt.Image.SCALE_SMOOTH); // scale it the smooth way  
-//				imageIcon = new ImageIcon(newimg);  // transform it back
-				
-				
-                
-                image = new JLabel("", new ImageIcon(sname), JLabel.CENTER);	//sname
-	        	//image = new JLabel(new ImageIcon(sname).getScaledInstance(20, 20,  java.awt.Image.SCALE_SMOOTH));	//, JLabel.CENTER);	//sname
-	        	
-	        	mainPanel.add(image, BorderLayout.CENTER);
-                mainPanel.revalidate(); //ADD THIS AS WELL
+
+	        	ImageIcon imgIcon = new ImageIcon(sname);
+	        	Image imageFile = imgIcon.getImage().getScaledInstance(200, 200, Image.SCALE_SMOOTH);
+	        	JLabel picLabel = new JLabel(new ImageIcon(imageFile));
+
+
+	        	mainPanel.add(picLabel, BorderLayout.CENTER);
+	        	mainPanel.revalidate(); //ADD THIS AS WELL
                 mainPanel.repaint();  //ADD THIS AS WELL
+	        	
+				
+
+
 	        }
 	     }  // End of anonymous inner class
 	     );
 	    
+	    JMenuItem showFilteredImage = new JMenuItem( "ShowImageWithFilter..." );
+	    showFilteredImage.setMnemonic( 'F' );
+	    fileMenu.add( showFilteredImage );
+	    showFilteredImage.addActionListener(
+	      new ActionListener()  // Beginning of anonymous inner class
+	      {
+	        public void actionPerformed( ActionEvent event )
+	        {
+
+	        	mainPanel.removeAll();
+	        	String sname = "/Users/Shared/Java-Libraries/CourseCD/mediasources/arch.jpg";
+
+
+	        	ImageControlPicture filteredPic = new ImageControlPicture(sname);
+	        	//filteredPic.clearBlue();
+	        	filteredPic.mirrorVertical();
+	        	BufferedImage buff = filteredPic.getBufferedImage();
+	        	
+	        	ImageIcon imgIcon = new ImageIcon(buff);
+	        	Image imageFile = imgIcon.getImage().getScaledInstance(200, 200, Image.SCALE_SMOOTH);
+	        	JLabel picLabel = new JLabel(new ImageIcon(imageFile));
+
+	        	mainPanel.add(picLabel, BorderLayout.CENTER);
+	        	mainPanel.revalidate(); //ADD THIS AS WELL
+                mainPanel.repaint();  //ADD THIS AS WELL
+
+
+	        }
+	     }  // End of anonymous inner class
+	     );
+	    
+	    JMenuItem soundItem = new JMenuItem( "Sound..." );
+	    soundItem.setMnemonic( 'S' );
+	    fileMenu.add( soundItem );
+	    soundItem.addActionListener(
+	      new ActionListener()  // Beginning of anonymous inner class
+	      {
+	        public void actionPerformed( ActionEvent event )
+	        {
+	        	mainPanel.removeAll();
+	        	// http://www.developer.com/java/other/article.php/2173111/Java-Sound-Playing-Back-Audio-Files-using-Java.htm
+	        	
+	        	String soundFile = "/Users/Shared/Java-Libraries/CourseCD/mediasources/thisisatest.wav";
+	        	ImageControlSound newSound = new ImageControlSound(soundFile);
+	        	//newSound.explore();
+	        	//newSound.doubleFreq();
+	        	//newSound.mirror();
+	        	//newSound.echo(10);
+	        	newSound.reverse();
+	        	newSound.play();
+	        	
+	        	// open the sound file as a Java input stream
+	            /*
+	            InputStream in = null;
+				try {
+					in = new FileInputStream(soundFile);
+				} catch (FileNotFoundException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+
+	            // create an audiostream from the inputstream
+	            AudioStream audioStream = null;
+				try {
+					audioStream = new AudioStream(in);
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+
+	            // play the audio clip with the audioplayer class
+	            AudioPlayer.player.start(audioStream);
+				*/
+	        	
+	        	
+	        	
+	        	/*
+	        	ImageControlPicture filteredPic = new ImageControlPicture(sname);
+	        	filteredPic.clearBlue();
+	        	BufferedImage buff = filteredPic.getBufferedImage();
+	        	
+	        	ImageIcon imgIcon = new ImageIcon(buff);
+	        	Image imageFile = imgIcon.getImage().getScaledInstance(200, 200, Image.SCALE_SMOOTH);
+	        	JLabel picLabel = new JLabel(new ImageIcon(imageFile));
+
+	        	mainPanel.add(picLabel, BorderLayout.CENTER);
+	        	mainPanel.revalidate(); //ADD THIS AS WELL
+                mainPanel.repaint();  //ADD THIS AS WELL
+				*/
+	        	
+	        }
+	     }  // End of anonymous inner class
+	     );
 	    
 	    
 	    final JMenuBar bar = new JMenuBar();  	// Create a JMenuBar so we can attach menus to it.

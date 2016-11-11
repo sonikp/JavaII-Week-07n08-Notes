@@ -47,12 +47,32 @@ public class ImageControlPicture extends Picture
 			  
 		  for ( Pixel value : pixelArray)
 		  {
-			  //System.out.println(value.getBlue());
+			  //System.out.println(value.getRed() + " " + value.getGreen() + " " + value.getBlue());
 			  value.setBlue(0);
 		  }
 	  }
 	  
-	  
+	  public void mirrorVertical()
+	  {
+		  int width = this.getWidth();
+		  int mirrorPoint = width / 2;
+		  Pixel leftPixel = null;
+		  Pixel rightPixel = null;
+		  
+		  // loop through all the rows
+		  for (int y = 0; y < getHeight(); y++)
+		  {
+			  // loop through all the columns
+			  for (int x = 0; x < mirrorPoint; x++)
+			  {
+				  leftPixel = getPixel(x,y);
+				  rightPixel = getPixel(width - 1 - x, y);
+				  rightPixel.setColor(leftPixel.getColor());
+			  }
+			  
+			  
+		  }
+	  }
 	  
 	  /**
 	   * Method to return a string with information about this picture.
