@@ -56,3 +56,108 @@
 		jar xf SwingSet2.jar
 		
 		*/
+		
+		
+--------------------------------------
+
+Module 5 notes before quiz
+
+
+Intro to swing GUI framework
+
+JFrame
+- highlights use of inheritance
+- main method just for the JFrame
+
+JPanel 
+- as a visual container
+
+ControlFrame
+- majority of code resides here
+- ControlFrame extends JFrame, so this is a JFrame
+- final = cannot be changed
+- Swing components as object fields
+- two main panels, (JPanel) main and calc panels
+- JLabel, used to display text information to a user
+- JButton, can be clicked by user
+- mainPanel = BorderLayout
+	- BorderLayout lays items out into North,South,East,West
+- calcPanel = FlowLayout()
+	- FlowLayout lays items out from left 
+	to right, wrapping around like words in a sentence
+- Layout manager controls how the visual components added to the JPanel will 
+be laid out
+
+- set mainPanel to to be out content pane, which is the top-level container of the
+JFrame
+- JMenu object is a file menu object
+- JMenuItem, object that can be added to a JMenu
+
+- Then invokes addActionListener: this registers an "anonymous inner class object"
+- this on the fly creates a new class, this is a class that is implementing the
+action listener interface which then instantiates the object from the class all in 
+one shot. this all happens when invoking the add action listener method. This the registers
+the event handler with the about item, which is again a menu item, will have 
+registered with it, which will be invoked when the user selects that item.
+This demonstrates how Java is an event oriented language
+- event dispatch threat controls the display of the gui to the user and the responses to the
+user actions 
+
+- when user selects the aboutItem menu, the JOptioPane class launches a message dialog
+- A JMenu must be added (registered) with a JMenuBar, which must be added to the JFrame
+- JFrame had a setJMenuBar method allowing you to set the JMenuBar for that JFrame
+
+JMenu => JMenuBar => setJMenuBar => JFrame
+
+- validate(); forces the layout manager to perform a fresh layout again
+- repaint(); forces any graphics to be freshly rendered
+
+- final: value cannot be changed, 
+- the ActionListener event-handling object does not get created until the first time
+that the Calculate menu items is selected
+- Any local variables that an event-handling object depends upon, must be bound as 
+constants by declaring them as final
+
+- but the Swing event-dispatching threat will continue
+
+- there are three main event handing threads in Java:
+	- main thread = runs only while the main method is executing
+	- garbage collection thread = cleans up after the main thread completes, removing object etc
+	- event-dispatch thread = swing thread, continues after main thread terminates.
+		- presents the gui to the user
+		- responding to the users actions
+	- final keyword binds local variables as constants that the event-handling object depends upon
+	- ensures these are accessible after main method terminates, and also so they don't
+	change during the operation of the program
+	
+- validate(); refreshes the layout
+- repaint(); refreshes the graphics
+
+
+
+
+
+
+2?
+6?	actionPerformed 
+8? EXIT_ON_CLOSE
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

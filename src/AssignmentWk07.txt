@@ -29,6 +29,11 @@ Add one more feature, for example a new image operation or a new sound operation
 Image or Sound menu to allow for the selection of this additional operation. If it makes sense, given the feature you are adding, you may want to 
 add an additional menu item to the File menu as well.
 
+************************************
+have slider values going from set page JPanel size of 200 to 360, max image size
+Picture object, not calling max image size via picture methods
+**************************************
+
 Any resource (.jpg and .wav) files used by your application should be selected by the user via the FileChooser class.
 
 Submit all modified .java files and all resource (.jpg and .wav) files. Please be careful, as you likely modified the Picture class, and/or 

@@ -15,7 +15,7 @@ public class ImageControlPanel extends JPanel
 	  public void paintComponent( Graphics g )
 	  {
 	    super.paintComponent( g );  // invoke the superclass paintComponent
-	    this.setBackground( Color.BLACK );
+	    this.setBackground( Color.WHITE );
 	    g.setColor( fillColor );
 	    g.fillRect( 50, 50, rectWidth, 60 );
 	    

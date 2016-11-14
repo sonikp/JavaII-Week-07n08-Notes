@@ -100,7 +100,7 @@ public class ControlFrame extends JFrame
     // ------- END - ex - adding edit menu 
      */
     
-    JMenuItem aboutItem = new JMenuItem( "About..." );
+    JMenuItem aboutItem = new JMenuItem( "FAbout..." );
     aboutItem.setMnemonic( 'A' );
     fileMenu.add( aboutItem );
     aboutItem.addActionListener(
@@ -233,6 +233,7 @@ public class ControlFrame extends JFrame
           // create new surface
           drawPanel.setBackground( Color.WHITE );
           mainPanel.add( drawPanel, BorderLayout.CENTER );
+
           mainPanel.add( widthJSlider, BorderLayout.SOUTH );          
           validate();
           repaint();
@@ -316,7 +317,7 @@ public class ControlFrame extends JFrame
     );
     
     // Oval control
-    widthJSlider = new JSlider( SwingConstants.HORIZONTAL, 0, 100, drawPanel.getOvalWidth() );
+    widthJSlider = new JSlider( SwingConstants.HORIZONTAL, 0, 100, drawPanel.getOvalWidth()  );	//drawPanel.getOvalWidth()
     widthJSlider.setMajorTickSpacing( 10 );
     widthJSlider.setPaintTicks( true );
     
@@ -325,8 +326,10 @@ public class ControlFrame extends JFrame
       {
         public void stateChanged( ChangeEvent e )
         {
-          drawPanel.setOvalWidth( widthJSlider.getValue() );
-          repaint();
+        	System.out.println(( widthJSlider.getValue() ));
+        	drawPanel.setOvalWidth( widthJSlider.getValue() );
+        	
+        	repaint();
         }
       }
     );

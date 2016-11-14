@@ -48,8 +48,14 @@ public class ImageControlFrameFeature extends JFrame
 	private JSlider widthJSliderRect;
 	private JLabel image;
 	
+	private String pictureImage;
+	private JSlider widthJSliderPic;
+	private int jSlideInt = 200;
+
+	
 	public ImageControlFrameFeature(String title)
 	{
+
 		super( title );
 	    mainPanel = new JPanel( new BorderLayout() );
 	    mainPanel.setSize(200, 250);   
@@ -63,9 +69,13 @@ public class ImageControlFrameFeature extends JFrame
 	    final ImageControlPanel drawImagePanel = new ImageControlPanel();
 	    drawImagePanel.setSize(500, 640);
 	    
+	    ImageControlPicture imagePicture = new ImageControlPicture();
+
+	    
+	    
 	    this.setContentPane( mainPanel );
 	    
-	    JMenu fileMenu = new JMenu( "File" );
+	    JMenu fileMenu = new JMenu( "PFile" );
 	    fileMenu.setMnemonic( 'F' );
 	    
 	    JMenuItem showItem = new JMenuItem( "Show..." );
@@ -77,8 +87,8 @@ public class ImageControlFrameFeature extends JFrame
 	        public void actionPerformed( ActionEvent event )
 	        {
 	        	mainPanel.removeAll();
-	        	String sname = "/Users/Shared/Java-Libraries/CourseCD/mediasources/gokart.png";
-                image = new JLabel(new ImageIcon(sname), JLabel.CENTER);	//sname
+	        	pictureImage = "/Users/Shared/Java-Libraries/CourseCD/mediasources/gokart.png";
+                image = new JLabel(new ImageIcon(pictureImage), JLabel.CENTER);	//sname
                 mainPanel.add(image, BorderLayout.CENTER);
                 mainPanel.revalidate(); //ADD THIS AS WELL
                 mainPanel.repaint();  //ADD THIS AS WELL
@@ -99,10 +109,10 @@ public class ImageControlFrameFeature extends JFrame
 	        	 mainPanel.removeAll();
 	
 	        	
-	        	String sname = "/Users/Shared/Java-Libraries/CourseCD/mediasources/gokart.png";
+	        	pictureImage = "/Users/Shared/Java-Libraries/CourseCD/mediasources/gokart.png";
                 
 
-	        	ImageIcon imgIcon = new ImageIcon(sname);
+	        	ImageIcon imgIcon = new ImageIcon(pictureImage);
 	        	Image imageFile = imgIcon.getImage().getScaledInstance(200, 200, Image.SCALE_SMOOTH);
 	        	JLabel picLabel = new JLabel(new ImageIcon(imageFile));
 
@@ -117,6 +127,105 @@ public class ImageControlFrameFeature extends JFrame
 	        }
 	     }  // End of anonymous inner class
 	     );
+	    
+	    
+	    ////////////****************
+	    
+	 // Filters applied to ShowImage function
+	    JMenuItem additionalOne = new JMenuItem( "Sepia" );
+	    additionalOne.setMnemonic( 'S' );
+	    fileMenu.add(additionalOne);
+	    additionalOne.addActionListener(
+	  	  new ActionListener()  // Beginning of anonymous inner class
+	  	  {
+	  	        public void actionPerformed( ActionEvent event )
+	  	        {
+
+	  	        	
+	  	        	mainPanel.removeAll();
+	  	        
+	  	        	pictureImage = "/Users/Shared/Java-Libraries/CourseCD/mediasources/arch.jpg";	//gokart.png
+	  	        	// arch.jpg height 480 width 360
+
+	  	        	// create picture object
+	  	        	ImageControlPicture filteredPic = new ImageControlPicture(pictureImage);
+	  	        	System.out.println(filteredPic);
+	  	        	filteredPic.sepiaTone();
+	  	        	BufferedImage buff = filteredPic.getBufferedImage();	//BufferedImage 
+	  	        	
+	  	        	ImageIcon imgIcon = new ImageIcon(buff);
+	  	        	Image imageFile = imgIcon.getImage().getScaledInstance(300, 300, Image.SCALE_SMOOTH);	// 200, widthJSliderPic.getValue(), jSlideInt
+	  	        	JLabel picLabel = new JLabel(new ImageIcon(imageFile));
+
+	  	        	mainPanel.add(picLabel, BorderLayout.CENTER);
+	  	        	revalidate(); 
+	                repaint();  
+
+	  	        }
+	  	     }  // End of anonymous inner class
+	  	     );
+	    
+	    
+	    
+	    ////////////////*************88
+	    
+	    
+	    
+	    
+	    // Filters applied to ShowImage function
+	    JMenuItem filterItemOne = new JMenuItem( "Additional..." );
+	    filterItemOne.setMnemonic( 'O' );
+	    fileMenu.add(filterItemOne);
+	    filterItemOne.addActionListener(
+	  	  new ActionListener()  // Beginning of anonymous inner class
+	  	  {
+	  	        public void actionPerformed( ActionEvent event )
+	  	        {
+
+	  	        	
+	  	        	mainPanel.removeAll();
+	  	        
+	  	        	pictureImage = "/Users/Shared/Java-Libraries/CourseCD/mediasources/arch.jpg";	//gokart.png
+	  	        	// arch.jpg height 480 width 360
+
+	  	        	// create picture object
+	  	        	ImageControlPicture filteredPic = new ImageControlPicture(pictureImage);
+	  	        	System.out.println(filteredPic);
+	  	        	
+	  	        	BufferedImage buff = filteredPic.getBufferedImage();	//BufferedImage 
+	  	        	
+	  	        	ImageIcon imgIcon = new ImageIcon(buff);
+	  	        	Image imageFile = imgIcon.getImage().getScaledInstance(300, 300, Image.SCALE_SMOOTH);	// 200, widthJSliderPic.getValue(), jSlideInt
+	  	        	JLabel picLabel = new JLabel(new ImageIcon(imageFile));
+
+	  	        	mainPanel.add(picLabel, BorderLayout.CENTER);
+	  	        	mainPanel.add( widthJSliderPic, BorderLayout.SOUTH ); 
+	  	        	revalidate(); 
+	                repaint();  
+
+	  	        }
+	  	     }  // End of anonymous inner class
+	  	     );
+	    
+	    //widthJSliderPic = new JSlider( SwingConstants.HORIZONTAL, 0, 100, imagePicture.getWidth() ); //drawImagePanel.getOvalWidth()
+	    widthJSliderPic = new JSlider( SwingConstants.HORIZONTAL, 200, 360, imagePicture.getWidth() ); // imagePicture.getWidth()
+	    widthJSliderPic.setMajorTickSpacing( 10 );
+	    widthJSliderPic.setPaintTicks( true );
+	    
+	    widthJSliderPic.addChangeListener(
+	      new ChangeListener()
+	      {
+	        public void stateChanged( ChangeEvent e )
+	        {
+	        	imagePicture.setWidth( widthJSliderPic.getValue());
+//	        	jSlideInt = widthJSliderPic.getValue();
+//	        	System.out.println(jSlideInt);
+	        	System.out.println(widthJSliderPic.getValue());
+	        	repaint();
+	   
+	        }
+	      }
+	    );
 	    
 	    ///ShowImageWithFilter...
 //	    JMenuItem showFilteredImage = new JMenuItem( "ShowImageWithFilter..." );
